@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-time Counter</title>
+</head>
+<body>
+    <h1>Implementation of the UNIX tail -f command using python</h1>
+    <div id="counter"></div>
+
+    <script>
+        const counterDiv = document.getElementById("counter");
+        const socket = new WebSocket("ws://localhost:8765/ws");
+
+        socket.onmessage = function(event) {
+            counterDiv.innerText = counterDiv.innerText + event.data;
+        };
+
+        socket.onclose = function() {
+            counterDiv.innerText = "Connection closed.";
+        };
+    </script>
+</body>
+</html>

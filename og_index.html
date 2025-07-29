@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-time Counter</title>
+</head>
+<body>
+    <h1>Live Counter</h1>
+    <div id="counter">Waiting for updates...</div>
+
+    <script>
+        const counterDiv = document.getElementById("counter");
+        const socket = new WebSocket("ws://localhost:8765/ws");
+
+        socket.onmessage = function(event) {
+            counterDiv.innerText = "Counter: " + event.data;
+        };
+
+        socket.onclose = function() {
+            counterDiv.innerText = "Connection closed.";
+        };
+    </script>
+</body>
+</html>
