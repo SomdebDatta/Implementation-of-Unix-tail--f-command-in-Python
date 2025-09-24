@@ -58,5 +58,5 @@ class Tail:
 
 
 if __name__ == '__main__':
-    t = Tail('app.log', n=5)
+    t = Tail('app.txt', n=5)
     t.start_tailing()
