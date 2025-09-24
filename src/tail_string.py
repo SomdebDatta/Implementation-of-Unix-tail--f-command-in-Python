@@ -23,8 +23,6 @@ class Tail:
             self.last_modified_time = self.get_last_modified_time()
             return True
 
-        # This means self.last_modified_time != get_last_modified_time
-        # print(f'File {self.filename} was modified in the last {self.secs} seconds!')
         self.last_modified_time = self.get_last_modified_time()
         return True
 
@@ -40,7 +38,7 @@ class Tail:
 
             while curr_pos >= last_eof_pos:
                 file.seek(curr_pos)
-                char = file.read(1) # read 1 byte'
+                char = file.read(1) # read 1 byte
 
                 if char == b'\n':
                     lines += 1
