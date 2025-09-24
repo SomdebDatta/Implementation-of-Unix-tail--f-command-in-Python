@@ -12,7 +12,7 @@ async def counter(websocket):
         await asyncio.sleep(3)
 
 async def fetch_lines(websocket):
-    t = Tail('app2.log', n=5)
+    t = Tail('app.log', n=5)
     while True:
         if t.check_file_modified():
             for lines in t.yield_last_n_lines():

@@ -1,1 +1,0 @@
-with open('hello.txt', 'rb')

@@ -38,12 +38,11 @@ class Tail:
             last_eof_pos = self.eof_pos
             curr_pos, self.eof_pos = file.tell(), file.tell()
 
-            while curr_pos > last_eof_pos:
+            while curr_pos >= last_eof_pos:
                 file.seek(curr_pos)
                 char = file.read(1) # read 1 byte'
 
                 if char == b'\n':
-                # if char == os.linesep.encode('utf-8'):
                     lines += 1
                     if lines == self.lines_limit:
                         break
