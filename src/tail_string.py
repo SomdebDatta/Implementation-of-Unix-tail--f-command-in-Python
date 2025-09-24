@@ -10,10 +10,10 @@ class Tail:
         self.last_n_lines = ''
         self.eof_pos = -1
 
-    def get_last_modified_time(self):
+    def get_last_modified_time(self) -> float:
         return os.path.getmtime(self.filename)
 
-    def check_file_modified(self):
+    def check_if_file_modified(self) -> bool:
         if self.last_modified_time == self.get_last_modified_time():
             # print(f'No modifications in {self.filename}...')
             return False
@@ -27,7 +27,7 @@ class Tail:
         return True
 
 
-    def yield_last_n_lines(self):
+    def yield_last_n_lines(self) -> str | None:
         self.last_n_lines = ''
         lines = 0
 
@@ -49,15 +49,14 @@ class Tail:
                 curr_pos -= 1
         yield self.last_n_lines
 
-    def start_tailing(self):
+    def start_tailing(self) -> None:
         while True:
-            if self.check_file_modified():
+            if self.check_if_file_modified():
                 for lines in self.yield_last_n_lines():
                     print(lines)
             time.sleep(self.secs)
 
 
 if __name__ == '__main__':
-    t = Tail('hello.txt', n=5)
+    t = Tail('app.log', n=5)
     t.start_tailing()
-    # t.yield_last_n_lines()
